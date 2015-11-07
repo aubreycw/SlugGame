@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Snake</title>
+  </head>
+
+  <body>
+
+    
+    <canvas></canvas>
+    <script type="application/javascript" src="./source/other.js"></script>
+    <script type="application/javascript" src="./source/snake.js"></script>
+    <script type="application/javascript" src="./source/apple.js"></script>
+    <script type="application/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script type="application/javascript" src="source/game.js"></script>
+    <script type="application/javascript" src="source/gameView.js"></script>
+    
+
+    <script type="application/javascript">
+      (function () {
+        var canvasEl = document.getElementsByTagName("canvas")[0];
+        SnakeGame.Game.DIM_X = window.innerWidth
+        SnakeGame.Game.DIM_Y = window.innerHeight
+        canvasEl.width = SnakeGame.Game.DIM_X;
+        canvasEl.height = SnakeGame.Game.DIM_Y;
+        var ctx = canvasEl.getContext("2d");
+        var game = new SnakeGame.Game();
+        new SnakeGame.GameView(game, ctx).start();
+
+        $(document).keydown(function(event){
+          if (event.which == 37){
+            game.moveSnake([-1,0])
+          } else if (event.which == 38){
+            game.moveSnake([0,-1])
+          } else if (event.which == 39){
+            game.moveSnake([1,0])
+          } else if (event.which == 40){
+            game.moveSnake([0,1])
+          }
+        });
+
+      })();
+    </script>
+  </body>
+</html>
